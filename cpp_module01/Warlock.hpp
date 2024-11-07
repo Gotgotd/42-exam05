@@ -6,7 +6,7 @@
 /*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 11:37:09 by gdaignea          #+#    #+#             */
-/*   Updated: 2024/11/07 11:44:25 by gdaignea         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:54:25 by gdaignea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "ASpell.hpp"
 #include "ATarget.hpp"
 #include<map>
+
+
 
 class Warlock {
 
@@ -29,7 +31,7 @@ class Warlock {
 	public:
 
 	Warlock(std::string name, std::string title);
-	~Warlock();
+	virtual ~Warlock();
 
 	std::string const& getName() const;
 	std::string const& getTitle() const;

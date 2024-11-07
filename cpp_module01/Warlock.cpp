@@ -6,7 +6,7 @@
 /*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 11:23:31 by gdaignea          #+#    #+#             */
-/*   Updated: 2024/11/07 14:56:53 by gdaignea         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:52:37 by gdaignea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 Warlock::Warlock() {}
 Warlock::Warlock(std::string name, std::string title): _name(name), _title(title) {
-	std::cout << _name << ": this looks like another boring day." << std::endl;
+	std::cout << _name << ": This looks like another boring day." << std::endl;
 }
 Warlock::Warlock(Warlock const& copy) {
 	*this=copy;
 }
 Warlock::~Warlock() {
-	std::cout << _name << ": my job here is done!" << std::endl;
-	for (std::map<std::string, ASpell*>::iterator it = _spellBook.begin(); it != _spellBook.end(); it++)
-		delete it->second;
+	std::cout << _name << ": My job here is done!" << std::endl;
+	for (std::map<std::string, ASpell*>::iterator it = _spellBook.begin(); it != _spellBook.end(); ++it)
+		_spellBook.erase(it);
 	_spellBook.clear();	
 }
 
@@ -50,7 +50,7 @@ void	Warlock::introduce() const {
 
 void	Warlock::learnSpell(ASpell*	spell) {
 	if (spell) {
-		_spellBook[spell->getName()] = spell; 
+		_spellBook[spell->getName()] = spell->clone(); 
 	}
 }
 

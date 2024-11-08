@@ -6,7 +6,7 @@
 /*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 11:23:31 by gdaignea          #+#    #+#             */
-/*   Updated: 2024/11/07 17:52:37 by gdaignea         ###   ########.fr       */
+/*   Updated: 2024/11/08 11:11:56 by gdaignea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Warlock::Warlock(Warlock const& copy) {
 Warlock::~Warlock() {
 	std::cout << _name << ": My job here is done!" << std::endl;
 	for (std::map<std::string, ASpell*>::iterator it = _spellBook.begin(); it != _spellBook.end(); ++it)
-		_spellBook.erase(it);
+		delete it->second;
 	_spellBook.clear();	
 }
 
@@ -55,9 +55,10 @@ void	Warlock::learnSpell(ASpell*	spell) {
 }
 
 void	Warlock::forgetSpell(std::string spell) {
-	if (_spellBook.find(spell) != _spellBook.end()) {
-		delete _spellBook[spell];
-		_spellBook.erase(_spellBook.find(spell));
+	std::map<std::string, ASpell*>::iterator	it = _spellBook.find(spell);
+	if (it != _spellBook.end()) {
+		delete it->second;
+		_spellBook.erase(it);
 	}
 }
 

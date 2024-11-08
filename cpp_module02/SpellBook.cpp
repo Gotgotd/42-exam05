@@ -6,7 +6,7 @@
 /*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 14:50:32 by gdaignea          #+#    #+#             */
-/*   Updated: 2024/11/07 15:13:30 by gdaignea         ###   ########.fr       */
+/*   Updated: 2024/11/08 11:59:38 by gdaignea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ SpellBook::~SpellBook() {
 }
 
 void	SpellBook::learnSpell(ASpell* spell) {
-	if (_spellBook.find(spell->getName()) == _spellBook.end()) {
+	if (spell) {
 		_spellBook[spell->getName()] = spell->clone();
 	}
 }

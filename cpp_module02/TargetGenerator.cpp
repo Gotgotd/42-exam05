@@ -6,7 +6,7 @@
 /*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:48:03 by gdaignea          #+#    #+#             */
-/*   Updated: 2024/11/07 15:51:36 by gdaignea         ###   ########.fr       */
+/*   Updated: 2024/11/08 11:59:37 by gdaignea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ TargetGenerator::~TargetGenerator() {
 }
 
 void	TargetGenerator::learnTargetType(ATarget* target) {
-	if (targets.find(target->getType()) == targets.end()) {
+	if (target) {
 		targets[target->getType()] = target->clone();
 	}
 }

@@ -1,20 +1,8 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   SpellBook.hpp                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 14:43:39 by gdaignea          #+#    #+#             */
-/*   Updated: 2024/11/07 14:52:03 by gdaignea         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #pragma once
+#include <iostream>
+#include <map>
+#include "ASpell.hpp"
 
-# include <iostream>
-# include <map>
-# include "ASpell.hpp"
 
 class SpellBook {
 	private:
@@ -26,8 +14,7 @@ class SpellBook {
 	SpellBook();
 	~SpellBook();
 
-	void	learnSpell(ASpell*);
-	void	forgetSpell(std::string const& spell);
+	void	learnSpell(ASpell* spell);
+	void	forgetSpell(std::string spell);
 	ASpell*	createSpell(std::string const& spell);
-
 };

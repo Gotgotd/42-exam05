@@ -1,41 +1,27 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   TargetGenerator.cpp                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 15:48:03 by gdaignea          #+#    #+#             */
-/*   Updated: 2024/11/08 11:59:37 by gdaignea         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-# include "TargetGenerator.hpp"
+#include "TargetGenerator.hpp"
 
 TargetGenerator::TargetGenerator() {}
-TargetGenerator::~TargetGenerator() {
-	for (std::map<std::string, ATarget*>::iterator it = targets.begin(); it != targets.end(); it++)
-		delete it->second;
-	targets.clear();
-}
+TargetGenerator::~TargetGenerator() {}
 
 void	TargetGenerator::learnTargetType(ATarget* target) {
+	std::map<std::string, ATarget*>::iterator	it = _targetBook.find(target->getType());
 	if (target) {
-		targets[target->getType()] = target->clone();
+		if (target && it == _targetBook.end())
+			_targetBook[target->getType()] = target->clone();
 	}
 }
 
-void	TargetGenerator::forgetTargetType(std::string const& spell) {
-	std::map<std::string, ATarget*>::iterator	it = targets.find(spell);
-	if (it != targets.end()) {
+void	TargetGenerator::forgetTargetType(std::string target) {
+	std::map<std::string, ATarget*>::iterator	it = _targetBook.find(target);
+	if (it != _targetBook.end()) {
 		delete it->second;
-		targets.erase(it);
+		_targetBook.erase(target);
 	}
 }
 
 ATarget*	TargetGenerator::createTarget(std::string const& target) {
-	ATarget* copy = NULL;
-	if (targets.find(target) != targets.end())
-		copy = targets[target];
-	return copy;
+	std::map<std::string, ATarget*>::iterator	it = _targetBook.find(target);
+	if (it != _targetBook.end())
+		return it->second;
+	return NULL;
 }
